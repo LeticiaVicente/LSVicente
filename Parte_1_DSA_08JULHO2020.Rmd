@@ -1,0 +1,422 @@
+---
+title: "Bioestatística"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+<div style="border:1px solid #020202;"><br><center>![](http://www.unirio.br/++theme++unirio-teste/img/logo_unirio.png)</center><br></div>
+
+<style type="text/css">
+  body {
+  font-family: arial;
+    color: #020202;
+    background-color: #ffffff;
+    #.border {border:1px solid #020202;};
+    border-width: 2px;
+    line-height: 1.5;
+    text-align:justify;
+    }
+</style>
+
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+library(DT)
+#library(DataStorage)
+load("hiperdia.RData")
+#data(hiperdia)
+hiperdia <- data.frame(hiperdia)
+names(hiperdia)[1]<-"Esc"
+```
+
+## O Início da Jornada
+
+### Introdução
+
+Esta plataforma está sendo desenvolvido pela aluna Bolsista do Projeto de Monitoria Letícia da Silva Vicente e pelo professor responsável pela disciplina de Bioestatística do Curso de Enfermagem, Davi da Silveira Barroso Alves, do Departamento de Métodos Quantitativos (DMQ) da Universidade Federal do Estado do Rio de Janeiro (UNIRIO), durante o ano de 2020.,
+<br> Esta plataforma foi criada, utilizando shiny na estrutura, por R Markdown que é uma sintaxe simples  que autoriza os formatos HTML, PDF, e documentos da Microsoft Office.
+
+### A Plataforma
+
+
+Essa plataforma foi elaborada com o intuito de facilitar a aprendizagem de Bioestatística, utilizando a metodologia da disciplina e ampliando para conceitos básicos de epidemiologia, de uma forma mais interativa e amigável. 
+
+A ideia inicial é que os estudantes poderão complementar os aprendizados com o R com as ferramentas em qualquer dispositivo com acesso à internet, promovendo uma maior flexibilidade para o aprendizado. A plataforma será disponibilizado gratuitamente para uma abordagem introdutória do que veremos ao longo da disciplina.
+
+Durante a disciplina usaremos o software estatístico R nas aulas práticas, sendo utilizado o R Commander e o R Studio. Nesta plataforma o conteúdo apresentado na [apostila](https://drive.google.com/file/d/1fCjMVmPKj85OReErWluQm0VD0oYC63Z7/view?usp=sharing) de R Commander, utilizada como referência para as aulas práticas. E será complementado por meio dessa plataforma com a apresentação dos procedimentos por linhas de comando no R Studio.
+
+
+## Preparativos 
+
+Para as próximas etapas é necessário estar conectado à internet.  
+O processo pode variar dependendo da velocidade da internet.
+
+  >  *Batatinha quando nasce espalha rama pelo chão,*  
+  *internet quando cai, faz parar o coração.* 
+  (desconhecido) 
+
+<center>
+```{r, echo=FALSE, out.width = '10%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/tempo.gif?raw=true")
+```
+</center>
+  
+#### **Instalando o R**
+
+Para instalar é necessário fazer o download da aplicação em um computador, pelo site https://cran.fiocruz.br/.
+
+1. Selecione o sistema operacional em “Download and Install R”
+2. Selecione “install R for the first time”
+3. Clique em “Download R” para baixar o instalador
+4. Aguarde o término do Download.Pode demorar um pouquinho a depender da sua conexão com a internet.
+5. Pronto! Agora é só instalar o programa no seu computador, abrindo o instalador que foi baixado
+
+
+O passo a passo para a instalação do R pode ser encontrado abaixo:
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/Instalando_R.gif?raw=true")
+```
+
+
+#### **Instalando o R commander**
+
+O R Commander é um pacote que pode ser instalado e acessado dentro do software R. 
+O procedimento para  a instalação do R Commander por meio de janelas, está detalhado na [apostila](https://drive.google.com/file/d/1fCjMVmPKj85OReErWluQm0VD0oYC63Z7/view?usp=sharing), na página 05.
+
+
+~~Para a Instalação do pacote Rcmdr:
+1. Na faixa de opções (na parte de cima da página) selecionar "Pacote"
+2. Localizar "Instalar pacote". 
+3. Então vai abrir uma janela para selecionar o "CRAN mirror" que indica de onde será efetuada a instalação dos pacotes. No caso, estamos no Rio de Janeiro, selecione "Brazil (RJ)" e então pressione o "Ok".
+4. A janela que será aberta estão todos os pacotes que podemos instalar. Para o RCommander temos que localizar o "Rcmdr", após encontrar é só selecionar e novamente "Ok". 
+  Para abrir o R Commander:
+a) Seguir novamente para o título "Pacote", depois "Inserir Pacote" e "Carregar pacote".
+b) Então localizar o pacote "Rcmdr" e "Ok"
+Podemos fazer esse passo usando o Comando "library(Rcmdr)" no console e pressionando o Enter do teclado.
+c) Pronto! a janela do Rcommander vai abrir e é só seguir com as demais atividades.
+~~
+
+1. Para a instalação por linha de comando, após abrir o R, na janela *"R Console"* , utilize o seguinte comando:
+
+    install.packages("Rcmdr",dependencies = T) 
+
+2. Em seguida pressionando o "Enter" do teclado.
+
+***ATENÇÃO:*** Para usar o comando _install.packages_, é necessário estar conectado à internet.
+
+3. Ao digitar o comando o R abrirá uma janela para a seleção do *CRAN mirror* de preferência. Escolha a opção **"0-Cloud[https]"** e clique em Ok.
+  Pode demorar um pouquinho. 
+
+
+Após a instalação do pacote, para abrir o R Commander utilize o seguinte comando:
+
+    library(Rcmdr) 
+
+~~quando carregar vai aparecer que nem toodos os pacotes foram carregados e se quer instalar os outros, clicar em "sim"~~ 
+
+Abaixo o passo-a-passo:
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/Instalando_Rcmdr.gif?raw=true")
+```
+
+#### **Instalando o R-Studio**
+
+Esta plataforma terá foco no uso do R por linha de comando, de maneira complementar ao uso do R Commander como apresentado na [apostila](https://drive.google.com/file/d/1fCjMVmPKj85OReErWluQm0VD0oYC63Z7/view?usp=sharing).
+
+O R Studio é uma interface gráfica mais amigável para o R e oferece recursos mais avançados. É necessário ter o R instalado para conseguir fazer uso do R Studio. Faça o download, e instale o aplicativo neste link: https://rstudio.com/products/rstudio/download/.
+
+1. Para instalar o RStudio, vá ao endereço: www.rstudio.com e pressione o botão "Download". 
+2. A página vai mudar e aparecerá a opção  "RStudio Desktop". Aperte "Download" 
+3. Então nessa nova página é só localizar "Download RStudio for windows" e fazer o download.
+4. Assim o carregamento do arquivo para a sua máquina irá começar. É só esperar o término do download e instalar.
+
+O passo a passo para a instalação do R pode ser encontrado abaixo:
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/Instalando_R.gif?raw=true")
+```
+
+### **Extra: RStudio Cloud**
+
+Essa é uma plataforma online que não requer a instalação do RStudio na máquina, mas funciona igual!
+
+1. Acesse "https://rstudio.cloud/" e clique em "Get Started".
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/0020.png?raw=true")
+```
+
+2. A página para selecionar o plano para utilizar a plataforma do RCloud Studio vai aparecer, é só selecionar o plano "Cloud Free" que é gratuito, e então "Sign up".
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/0021.png?raw=true")
+```
+
+3. Agora é só se cadastrar para fazer a inscrição
+
+Email  &#8594;  Senha &#8594; Primeiro Nome &#8594; Sobrenome &#8594; "Sign up" 
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/0022.png?raw=true")
+```
+
+4. A seguinte página vai aparecer, para começar a usar a plataforma localize "New Project" a direita para criar um projeto novo.
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/0023.png?raw=true")
+```
+
+5. Pode demorar um pouquinho para carregar o projeto, mas é só esperar até sumir o "Deploying Project"
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/0024.png?raw=true")
+```
+
+6. Pronto! Você está com um RStudio que pode usar em qualquer dispositivo com internet!
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/0025.png?raw=true")
+```
+
+O passo a passo para se cadastrar e carregar o banco de dados pode ser encontrado [aqui](https://github.com/LeticiaVicente/LSVAplic/blob/master/0018.pdf?raw=true).
+
+## Carregando o Banco
+
+### **_Conjunto de Dados_**
+
+Os bancos de dados podem ser escritos em planilha Excel (formato .xls ou .xlsx), no Bloco de Notas (formato .txt) ou salvos em softwares de análise estatística (ex.: arquivos do SAS, .sav do SPSS e .RData do R) e outros formatos (.dbc e .dbf utilizado pelo datasus). Para que o R consiga ler o banco de dados criado fora dele, é necessário importar este arquivo.
+
+Trataremos neste momento sobre a importação de bancos de dados em arquivos nos formatos: .xls, .xlsx, .txt e .csv. , tanto no R Commander como no R-Studio, e, posteriormente por linhas de comando.
+
+O procedimento no R Commander está detalhado nas páginas 7 a 13 da [apostila](https://drive.google.com/file/d/1fCjMVmPKj85OReErWluQm0VD0oYC63Z7/view?usp=sharing).
+
+
+### **_Mudando o Diretório_**
+
+O Diretório de trabalho no R é muito importante no R, pois é lá que os arquivos e as planilhas deverão estar salvas para poderem ser acessadas via R. Para checar qual o diretório de trabalho está em uso pelo R, podemos utilizar o comando *getwd()*.
+
+    getwd()
+
+Ai é só localizar a pasta que você está trabalhando, geralmente o padrão do R é a pasta de Documentos. Mas se você quiser mudar de diretório é bem simples.
+No RStudio, na barra principal de ferramentas, em "Session" &#8594; "Set Working Directory" &#8594; "Choose Directory" &#8594; E localizar a pasta de escolha.
+
+Também é possível definir o *Diretório* no console, pelo comando:
+
+    setwd("novo local")
+
+**ATENÇÃO:** Essa etapa é muito importante e deve ser feita todas as vezes que iniciar o R Studio.
+
+
+### **_Importando um banco de dados no formato XLS E XLSX_**
+ 
+É comum trabalharmos com conjuntos de dados aplicados em uma planilhas do Excel (formato .xls ou .xlsx).
+O arquivo pode ser localizado neste [link](https://github.com/LeticiaVicente/LSVAplic/blob/master/Hiperdia.xlsx?raw=true)
+
+#### **No R Commander**
+
+Após iniciar o R Commander, e instalar o pacote, usando o comando library(Rcmdr), acesse o painel, e siga as instruções de acordo com o tipo de arquivo em que o banco de dados está. 
+
+Primeiramente abra o RCommander você pode abrir de duas maneiras, ou digitando no R console *library(Rcmdr)* ou *require(Rcmdr)* ; ou pode abrir pela barra de tarefas Pacotes  &#8594; Carregar Pacotes  &#8594; localizar o *Rcmdr* &#8594; Dê Ok! Aguarde o programa abrir.
+
+Para importar o arquivo de dados com o R Commander, façamos o seguinte:
+
+1. Na barra de ferramentas da janela R Commander, vá em:<br>
+ Dados  &#8594; Importar arquivos de dados  &#8594; do arquivo Excel.
+2. Dê um nome para o seu conjunto de dados (sem utilizar espaço). Dê OK.
+3. Selecione o nome da planilha na qual está o conjunto de dados. Dê OK.
+4. Procure o arquivo e dê duplo clique nele.
+
+Nesse vídeo vemos essas etapas:
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/Rcmdr_Carregando_xlsx.gif?raw=true")
+```
+  
+<br>
+
+#### **No R Studio**
+
+Importando e Carregando Bibliotecas no R Studio.<br>
+1. No menu localize *File* &#8594;*Import Dataset* &#8594;*From Text(base)* 2. Uma nova janela vai abrir, 
+  Nesse local você pode alterar o nome do banco e escolher o separador dos dados, 
+3. Apos configurar, no canto inferior direito vai estar uma prévia de como está configurado o banco, 
+4. Se estiver tudo certo pressione Ok e o banco será carregado.
+
+Neste vídeo vemos essas etapas:
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/RStudio_Carregando_xlsx.gif?raw=true")
+```
+
+
+O Procedimento ainda pode ser realizado por *linha de comando no R-Studio*
+
+    Hiperdia <-read_excel("nome_arquivo.xls",sheet = "nome_planilha")
+
+### **_Importando um Banco de Dados no formato TXT ou CSV_**
+
+O arquivo pode ser localizado neste [link](https://github.com/LeticiaVicente/LSVAplic/blob/master/hiperdia.csv?raw=true)
+
+#### **R Commander**
+
+Não é raro encontrarmos conjuntos de dados salvos no formato .txt ou no formato .csv. Apesar de programas como o MS Excel terem suporte para abrir arquivos com estas extensões, a forma de importação para o R é diferente daquela explicada anteriormente. Os dados em .txt e .csv são arquivos de texto em que as colunas são separadas por algum delimitador
+(print do delimitador em bloco de notas e explicar o espaço)
+
+Siga o passo a passo.
+
+1. Na barra de ferramentas da janela R Commander, vá em 
+
+Dados  &#8594; Importar arquivos de dados  &#8594; de arquivo texto, clipboard ou URL. 
+
+Uma janela tal qual a Figura a seguir será aberta.
+
+2. Dê um nome para o seu conjunto de dados (não utilize espaço).
+3. Nome das variáveis no arquivo: deixe marcado (recomendado).
+4. Símbolo para dados faltantes: mantenha NA (recomendado).
+5. Localização do Arquivo de dados: mantenha em Sistema de Arquivos Local.
+6. Para preencher corretamente os campos “Separador de campos” e “Separador de decimais”, abra o arquivo que contém o conjunto de dados com o Bloco de Notas e verifique qual o símbolo utilizado para separar os campos e qual símbolo utilizado para separador de casa decimal. Após a verificação, feche-o.
+7. Dê OK e procure o arquivo para concluir a importação.
+
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/Rcmdr_Carregando_csv.gif?raw=true")
+```
+
+#### **No R Studio**
+
+Importando e Carregando Bibliotecas no R Studio.<br>
+1. No menu localize *File* &#8594;*Import Dataset* &#8594;*From Text(base)* 2. Uma nova janela vai abrir, 
+  Nesse local você pode alterar o nome do banco e escolher o separador dos dados, 
+3. Apos configurar, no canto inferior direito vai estar uma prévia de como está configurado o banco, 
+4. Se estiver tudo certo pressione Ok e o banco será carregado.
+
+Neste vídeo vemos essas etapas:
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/RStudio_Carregando_csv.gif?raw=true")
+```
+
+O Procedimento ainda pode ser realizado por *linha de comando no R-Studio*
+
+    Hiperdia <-read.csv2("local do arquivo")
+
+    
+###	**_Exportando um Conjunto de Dados_**
+
+####	**No R Commander**
+
+Assim como a importação de conjuntos de dados, o R Commander também possibilita a exportação de um conjunto de dados (para o formato .txt). 
+<br>
+1. Vá em Dados  &#8594; Conjuntos de dados ativo  &#8594; Exportar conjunto de dados ativo. 
+2. Feito isto, uma janela será aberta. 
+a. A primeira caixinha refere-se à inclusão do nome das variáveis (colunas) no arquivo exportado;
+b. A segunda caixinha refere-se à inclusão do nome das linhas (coluna cinza à esquerda do conjunto de dados) no arquivo exportado;
+c. A terceira caixinha menciona a inclusão de aspas em torno dos atributos das variáveis qualitativas (o que pode ser útil ou não, a depender dos nossos propósitos).
+
+
+FAZER O GIF (pode não parecer, mas é chatinho de fazer haha)
+
+#### **No R- Studio**
+
+Para iniciar no R-Studio é necessário ter o programa instalado. O processo é bem similar ao anterior, a grande diferença está na apresentação das etapas no aplicativo, que é melhor apresentado. 
+
+Acompanhe a partir do vídeo a seguir:
+
+E passo a passo
+
+Como alterar o diretório de trabalho
+FAZER O GIF (pode não parecer, mas é chatinho de fazer haha)
+
+
+## Preparando a Base
+
+### O comando str
+
+Ao importar um conjunto de dados no R, conforme detalhado na página ..... da apostila, o R pode reconhecer as variáveis de maneira distinta.
+
+Para identificar o tipo de cada uma das variáveis da base de dados é necessário usar a função ```str(nome_da_base)```
+
+A seguir um exemplo de aplicação da função na base **hiperdia**:
+  
+```{r mostra_str, exercise=T}
+str(hiperdia)
+```
+
+### Salvando a Atividade
+
+Ensinar a salvar em linha de comando
+
+Como salvar as variáveis:  *save(objeto,file=”nome_arquivo.RData”)*
+
+    setwd("D://Estatistica//App_Enf")
+    save(hiperdia, file = "hiperdia.RData")
+
+Como importar um arquivo RData
+linha de comando : load
+
+
+### Como salvar as variáveis
+
+    save(hiperdia, file = "E://LSV//Estatistica//App_Enf//hiperdia.RData")
+
+
+### Carregando Banco de dados RData
+
+O arquivo RData pode ser localizado neste [link](https://github.com/LeticiaVicente/LSVAplic/blob/master/hiperdia.RData?raw=true)
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("https://github.com/LeticiaVicente/LSVAplic/blob/master/Rcmdr_Carregando_RData.gif?raw=true")
+```
+
+## Próximas Atividades
+
+### Preparo e conversão de variáveis
+
+  Tipos de Variáveis: Como o R identifica numérica, interger e fator
+  Manipulação de dados, converter variável numérica em fator, como colocar legenda nos fatores
+Como criar variáveis numéricas divididas em classes
+  Trocar/ Alterar ordem dos fatores
+  Criar uma variável em classe que é uma soma de outras (exemplo: taxa de mortalidade)
+  Juntar fatores
+  
+  
+### Como excluir variáveis
+
+    
+    hiperdia$hipertenso_fator <- NULL 
+    hiperdia$esc_fator <- NULL 
+    
+
+![Vídeo](Link Vídeo)
+
+
+
+## Referências
+
+MELO, Felipe Rafael Ribeiro. Introdução ao R Commander.
+Notas de Aula. Departamento de Métodos Quantitativos - UNIRIO
+Rio de Janeiro - RJ, Brasil. 2019
+
+http://www.lampada.uerj.br/arquivosdb/_book2/manipulacao.html
+https://bookdown.org/wevsena/curso_r_tce/curso_r_tce.html
+https://bookdown.org/yihui/rmarkdown/shiny-multiple.html
+https://holtzy.github.io/Pimp-my-rmd/#compile_in_a_website
+
+
+&nbsp;
+<hr />
+<p style="text-align: center;"> <a href="https://github.com/LeticiaVicente" >Letícia Vicente</a></p>
+<p style="text-align: center;"><span style="color: #808080;"><em>meu@gmail.com</em></span></p>
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://github.com/LeticiaVicente" class="fa fa-github"></a>
+    <a title="Instagram" class="fa fa-instagram" target="_blank" id="uf_epicosocial15" href="https://www.instagram.com/_leticiavicente_/"></a>
+    <a title="Google+" class="fa fa-google-plus" target="_blank" id="uf_epicosocial13" href="https://classroom.google.com/"></a>
+    <a title="YouTube" class="fa fa-youtube" target="_blank" id="uf_epicosocial6" href="https://www.youtube.com/channel/UCKJDFzpnNkkgLDaFvcErqSQ?view_as=subscriber"></a>
+   </p>
+
+&nbsp;
